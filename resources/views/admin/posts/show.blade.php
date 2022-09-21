@@ -15,7 +15,7 @@
                   <p class="card-text">{{$post->post_content}}</p>
                   </div>
                 <div class="card-footer">
-                  <small class="text-muted"> <p>Published by: {{$post->author}} on the: {{$post->post_date}}</p></small>
+                  <small class="text-muted"> <p>Published by: {{$post->user->name}} on the: {{$post->post_date}}</p></small>
                   <a href="{{route('admin.posts.index')}}" class="btn btn-primary btn-sm w-50">Back to Index</a>
                 </div>
               

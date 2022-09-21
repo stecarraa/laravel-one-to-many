@@ -21,7 +21,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Auth::user()->posts;
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -46,7 +46,7 @@ class PostController extends Controller
     {
         $data = $request->validate($this->validationArray);
         $post = new Post();
-        $data['author'] = Auth::user()->name;
+        $data['user_id'] = Auth::user()->id;
         $data['post_date'] = new DateTime();
         $post->create($data);
         return redirect()->route('admin.posts.index');
@@ -88,7 +88,7 @@ class PostController extends Controller
         //
         $data = $request->validate($this->validationArray);
         $post = POST::find($id);
-        $data['author'] = $post->author;
+        $data['user_id'] = $post->id;
         $data['post_date'] = $post->post_date;
         $post->update($data);
         return redirect()->route('admin.posts.index');
